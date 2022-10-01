@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
-import { auth, getRestaurantId, userInfos} from '../../firebase'
+import { auth, getRestaurantId, getStoreId, userInfos} from '../../firebase'
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut} from 'firebase/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as Animatable from "react-native-animatable"
@@ -31,7 +31,8 @@ export default function SignIn({navigation, route}) {
 useEffect(()=>{
   const checkAuth = onAuthStateChanged(auth, (user)=>{
       if(user){
-       getRestaurantId(user.uid)
+      //  getRestaurantId(user.uid)
+      getStoreId(user.uid)
        .then(snapshot => {
          if(snapshot.docs[0]){
            setRestaurantData({id: snapshot.docs[0].id, ...snapshot.docs[0].data(),  email: user.email})
