@@ -30,7 +30,7 @@ export const screen = {
 
 export const language = "en"
 export const currency = "USD"
-export const apikey = {/*  Your Google api here*/}
+export const apikey = "AIzaSyAwLZyznRMu86EDLO-fsRL8BgrCT7hXq7g" // {/*  Your Google api here*/}
 
 
 
