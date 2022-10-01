@@ -193,12 +193,19 @@ export const updateProduct = (product_id, image) => {
   })
     .then(() => console.log('good'))
 }
-export const updateRestaurant = (restaurant_id, image) => {
-  const docRef = doc(db, 'restaurants', restaurant_id)
+// export const updateRestaurant = (restaurant_id, image) => {
+//   const docRef = doc(db, 'restaurants', restaurant_id)
+//   updateDoc(docRef, {
+//     image: image,
+//   })
+//     .then(() => console.log('good'))
+// }
+export const updateStore = (store_id, image) => {
+  const docRef = doc(db, 'stores', store_id)
   updateDoc(docRef, {
     image: image,
   })
-    .then(() => console.log('good'))
+    .then(() => console.log('updated'))
 }
 // export const updateRestaurantInfos = (restaurantData, email, name, phone, address, city, setRestaurantData) => {
 //   const docRef = doc(db, 'restaurants', restaurantData.id)
