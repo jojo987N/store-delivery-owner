@@ -13,7 +13,7 @@ import { APP_CONSTANT } from '../../global'
 export default function SignIn({navigation, route}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const {restaurantData,setRestaurantData} = useContext(RestaurantContext)
+  const {storeData,setstoreData} = useContext(RestaurantContext)
   const [loading, setLoading] = useState(false)
   if(route.params && route.params.param === "SignOut")
   signOut(auth)
@@ -35,7 +35,7 @@ useEffect(()=>{
       getStoreId(user.uid)
        .then(snapshot => {
          if(snapshot.docs[0]){
-           setRestaurantData({id: snapshot.docs[0].id, ...snapshot.docs[0].data(),  email: user.email})
+           setstoreData({id: snapshot.docs[0].id, ...snapshot.docs[0].data(),  email: user.email})
            setLoading(false)
            navigation.navigate('DrawerNavigator')
          } 

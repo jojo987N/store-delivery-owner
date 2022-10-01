@@ -20,7 +20,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import { RestaurantContext } from "../context/RestaurantContext";
 
 export default function AddFood() {
-  const { restaurantData } = useContext(RestaurantContext);
+  const { storeData } = useContext(RestaurantContext);
   const { foods, setFoods } = useContext(FoodsContext);
   const [categories, setCategories] = useState();
   const [name, setName] = useState("");
@@ -142,7 +142,7 @@ export default function AddFood() {
                 dPrice,
                 size,
                 category,
-                restaurantData.id
+                storeData.id
               )
                 .then(() =>
                   setFoods([
@@ -154,7 +154,7 @@ export default function AddFood() {
                       price,
                       size,
                       category,
-                      restaurantId: restaurantData.id,
+                      restaurantId: storeData.id,
                     },
                   ])
                 )

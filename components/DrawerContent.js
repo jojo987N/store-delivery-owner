@@ -15,7 +15,7 @@ import { auth } from '../firebase'
 import { RestaurantContext } from '../context/RestaurantContext'
 
 export default function DrawerContent(props) {
-    const { restaurantData } = useContext(RestaurantContext)
+    const { storeData } = useContext(RestaurantContext)
     const [isSignedIn, setIsSignedIn] = useState(true)
     const navigation = useNavigation()
     const signOutUser = () => {
@@ -39,16 +39,16 @@ export default function DrawerContent(props) {
                         rounded
                         avatarStyle={styles.avatar}
                         size={75}
-                        source={{ uri: restaurantData.image }} />
+                        source={{ uri: storeData.image }} />
                     <View style={{ marginLeft: 10 }}>
                         <Text style={{
                             fontWeight: "bold",
                             fontSize: 18,
-                        }}>{restaurantData.name}</Text>
+                        }}>{storeData.name}</Text>
                         <Text style={{
                             fontSize: 14,
                         }}>{
-                                restaurantData.address
+                                storeData.address
                             }</Text>
                     </View>
                 </View>

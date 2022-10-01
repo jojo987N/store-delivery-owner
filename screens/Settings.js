@@ -13,7 +13,7 @@ import SettingsComponent from "../components/SettingsComponent";
 import { RestaurantContext } from "../context/RestaurantContext";
 
 export default function Upload({ route, navigation }) {
-  const { restaurantData, setRestaurantData } = useContext(RestaurantContext)
+  const { storeData, setstoreData } = useContext(RestaurantContext)
   const uploadImage = async (uri) => {
     const response = await fetch(uri)
     const blob = await response.blob()
@@ -21,7 +21,7 @@ export default function Upload({ route, navigation }) {
     const storageRef = ref(storage, uri.substring(uri.lastIndexOf('/') + 1));
     await uploadBytes(storageRef, blob)
     const url = await getDownloadURL(storageRef)
-     updateStore(restaurantData.id, url)
+     updateStore(storeData.id, url)
   }
   let openImagePickerAsync = async () => {
     let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -33,8 +33,8 @@ export default function Upload({ route, navigation }) {
     console.log(pickerResult)
     if (pickerResult.cancelled === true) return;
     uploadImage(pickerResult.uri)
-    setRestaurantData({
-      ...restaurantData,
+    setstoreData({
+      ...storeData,
       image: pickerResult.uri
     })
   }

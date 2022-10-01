@@ -8,7 +8,7 @@ import BottomSheet from 'reanimated-bottom-sheet'
 import { CategoriesContext } from '../context/CategoriesContext';
 
 export default function AddCategory() {
-    const {restaurantData} = useContext(RestaurantContext)
+    const {storeData} = useContext(RestaurantContext)
     const {categories, setCategories} = useContext(CategoriesContext)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -49,14 +49,14 @@ export default function AddCategory() {
            }}>
              <Button title='Add' onPress={
                  ()=>{
-                    addCategory(name, description, url, restaurantData.id)
+                    addCategory(name, description, url, storeData.id)
                     .then(()=> setCategories([
                       ...categories,
                        {
                          name,
                          description,
                          image: url,
-                         id: restaurantData.id
+                         id: storeData.id
                        }
                     ]))
                  }

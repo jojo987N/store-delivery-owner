@@ -25,7 +25,7 @@ import { onSnapshot } from "firebase/firestore";
 
 export default function Categories({ navigation }) {
   const { categories, setCategories } = useContext(CategoriesContext);
-  const { restaurantData } = useContext(RestaurantContext);
+  const { storeData } = useContext(RestaurantContext);
   const [addButtons, setAddButtons] = useState();
   const [categoriesRestaurants, setCategoriesRestaurants] = useState();
   useEffect(() => {
@@ -92,17 +92,17 @@ export default function Categories({ navigation }) {
                             (categorieRestaurant) =>
                               categorieRestaurant.categoryId === category.id &&
                               categorieRestaurant.restaurantId ===
-                                restaurantData.id
+                                storeData.id
                           )
                         ) {
                           addCategoryRestaurant(
                             category.id,
-                            restaurantData.id
+                            storeData.id
                           ).then((res) => {});
                         } else {
                           deleteCategoriesRestaurants(
                             category.id,
-                            restaurantData.id
+                            storeData.id
                           ).then(() => {});
                         }
                       }}
@@ -112,7 +112,7 @@ export default function Categories({ navigation }) {
                           (categorieRestaurant) =>
                             categorieRestaurant.categoryId === category.id &&
                             categorieRestaurant.restaurantId ===
-                              restaurantData.id
+                              storeData.id
                         )
                           ? "red"
                           : addButtons[index].backgroundColor,
@@ -123,7 +123,7 @@ export default function Categories({ navigation }) {
                           (categorieRestaurant) =>
                             categorieRestaurant.categoryId === category.id &&
                             categorieRestaurant.restaurantId ===
-                              restaurantData.id
+                              storeData.id
                         )
                           ? "Remove"
                           : addButtons[index].text}

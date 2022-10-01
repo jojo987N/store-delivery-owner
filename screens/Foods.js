@@ -17,7 +17,7 @@ import { onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { RestaurantContext } from "../context/RestaurantContext";
 
 export default function Foods() {
-  const { restaurantData } = useContext(RestaurantContext);
+  const { storeData } = useContext(RestaurantContext);
   const { foods, setFoods } = useContext(FoodsContext);
   const navigation = useNavigation();
 
@@ -26,7 +26,7 @@ export default function Foods() {
       let foods = [];
 
       snapshot.docs
-        .filter((doc) => doc.data().restaurantId === restaurantData.id)
+        .filter((doc) => doc.data().restaurantId === storeData.id)
         .forEach((doc) => {
           foods.push({ ...doc.data(), id: doc.id });
         });

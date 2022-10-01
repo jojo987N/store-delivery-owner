@@ -9,12 +9,12 @@ import { ScrollView } from 'react-native-gesture-handler'
 import SearchBar from './SearchBar'
 
 export default function SettingsComponent({ navigation, bs }) {
-  const { restaurantData, setRestaurantData } = useContext(RestaurantContext)
-  const [email, setEmail] = useState(restaurantData.email)
-  const [name, setName] = useState(restaurantData.name)
-  const [phone, setPhone] = useState(restaurantData.phone)
-  const [address, setAddress] = useState(restaurantData.address)
-  const [city, setCity] = useState(restaurantData.city)
+  const { storeData, setstoreData } = useContext(RestaurantContext)
+  const [email, setEmail] = useState(storeData.email)
+  const [name, setName] = useState(storeData.name)
+  const [phone, setPhone] = useState(storeData.phone)
+  const [address, setAddress] = useState(storeData.address)
+  const [city, setCity] = useState(storeData.city)
   return (
     <View style={{
       paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
@@ -31,7 +31,7 @@ export default function SettingsComponent({ navigation, bs }) {
           }
         }>
           <Image
-            source={{ uri: restaurantData.image }}
+            source={{ uri: storeData.image }}
             style={{
               width: 100,
               height: 100,
@@ -84,7 +84,7 @@ export default function SettingsComponent({ navigation, bs }) {
               style={styles.textInput} />
           </View>
           <TouchableOpacity onPress={() => {
-            updateStoreInfos(restaurantData, email, name, phone, address, city, setRestaurantData)
+            updateStoreInfos(storeData, email, name, phone, address, city, setstoreData)
           }}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Update</Text>
