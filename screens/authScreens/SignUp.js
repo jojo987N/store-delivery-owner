@@ -19,7 +19,7 @@ export default function SignUp({ navigation }) {
        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
        addRestaurant(userCredentials,name,phone, address)
        .then(()=> navigation.navigate("SignIn"))
-       console.log("RESTAURANT ACCOUNT CREATED")
+       console.log("STORE ACCOUNT CREATED")
      }catch(error){ 
        console.log(error)
      }
