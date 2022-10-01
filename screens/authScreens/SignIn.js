@@ -8,6 +8,7 @@ import * as Animatable from "react-native-animatable"
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { RestaurantContext } from '../../context/RestaurantContext'
 import Loading from '../../components/Loading'
+import { APP_CONSTANT } from '../../global'
 
 export default function SignIn({navigation, route}) {
   const [email, setEmail] = useState('')
@@ -47,7 +48,7 @@ useEffect(()=>{
   return (
       <View style={styles.container}>
           <View style={styles.header}>
-              <Text style={styles.title}>Restaurant Owner !</Text>
+              <Text style={styles.title}>{APP_CONSTANT.STORE_OWNER}</Text>
           </View>
           <Animatable.View style={styles.footer} animation="fadeInUpBig">
               <View style={styles.textInputContainer}>

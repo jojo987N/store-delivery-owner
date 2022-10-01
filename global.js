@@ -11,6 +11,7 @@ export const APP_CONSTANT = {
     READY: "ready",
     ACCEPTED: "ACCEPTED",
     FOOD_IS_DONE: "FOOD IS DONE",
+    STORE_OWNER: "Store Owner !"
 }
 
 export const button = {
