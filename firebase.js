@@ -136,10 +136,16 @@ export const deleteCategoriesRestaurants = async (categoryId, restaurantId) => {
   const docRef = doc(db, 'categoriesRestaurants', snapshot.docs[0].id)
   return deleteDoc(docRef)
 }
-export const getRestaurantId = (uid) => {
-  const q = query(restaurantsCol, where('ownerId', '==', uid))
+// export const getRestaurantId = (uid) => {
+//   const q = query(restaurantsCol, where('ownerId', '==', uid))
+//   return getDocs(q)
+// }
+
+export const getStoreId = (uid) => {
+  const q = query(storesCol, where('ownerId', '==', uid))
   return getDocs(q)
 }
+
 export const updateOrder = (order_Id, status, cookingTime) => {
   const docRef = doc(db, 'orders', order_Id)
   return updateDoc(docRef, {
