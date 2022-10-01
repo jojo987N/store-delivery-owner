@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Entypo, MaterialIcons } from '@expo/vector-icons'
-import { addRestaurant, addUser, auth } from '../../firebase'
+import { addStore, addUser, auth } from '../../firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as Animatable from "react-native-animatable"
@@ -17,7 +17,8 @@ export default function SignUp({ navigation }) {
   async function signUp(){
      try{
        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-       addRestaurant(userCredentials,name,phone, address)
+      //  addRestaurant(userCredentials,name,phone, address)
+      addStore(userCredentials,name,phone, address)
        .then(()=> navigation.navigate("SignIn"))
        console.log("STORE ACCOUNT CREATED")
      }catch(error){ 

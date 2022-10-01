@@ -34,7 +34,8 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp)
 export const db = getFirestore()
-export const restaurantsCol = collection(db, 'restaurants')
+// export const restaurantsCol = collection(db, 'restaurants')
+export const storesCol = collection(db, 'stores')
 export const ordersCol = collection(db, 'orders')
 export const categoriesRestaurantsCol = collection(db, 'categoriesRestaurants')
 export const getOrders = (setOrders) => {
@@ -217,8 +218,20 @@ const getOrder = () => {
       console.log(snapshot.docs[0].data())
     })
 }
-export const addRestaurant = (userCredentials, name, phone, address) => {
-  return addDoc(restaurantsCol, {
+// export const addRestaurant = (userCredentials, name, phone, address) => {
+//   return addDoc(restaurantsCol, {
+//     ownerId: userCredentials.user.uid,
+//     name: name,
+//     ownerEmail: userCredentials.user.email,
+//     name,
+//     phone,
+//     address,
+//     createdAt: serverTimestamp()
+//   })
+// }
+
+export const addStore = (userCredentials, name, phone, address) => {
+  return addDoc(storesCol, {
     ownerId: userCredentials.user.uid,
     name: name,
     ownerEmail: userCredentials.user.email,
