@@ -207,7 +207,7 @@ export const updateStore = (store_id, image) => {
   })
     .then(() => console.log('updated'))
 }
-// export const updateRestaurantInfos = (storeData, email, name, phone, address, city, setstoreData) => {
+// export const updateRestaurantInfos = (storeData, email, name, phone, address, city, setStoreData) => {
 //   const docRef = doc(db, 'restaurants', storeData.id)
 //   const data = {
 //     email,
@@ -220,13 +220,13 @@ export const updateStore = (store_id, image) => {
 //     updatedAt: serverTimestamp()
 //   }
 //   return updateDoc(docRef, data)
-//     .then(() => setstoreData({
+//     .then(() => setStoreData({
 //       ...storeData,
 //       ...data
 //     }))
 // }
 
-export const updateStoreInfos = (storeData, email, name, phone, address, city, setstoreData) => {
+export const updateStoreInfos = (storeData, email, name, phone, address, city, setStoreData) => {
   const docRef = doc(db, 'stores', storeData.id)
   const data = {
     email,
@@ -239,7 +239,7 @@ export const updateStoreInfos = (storeData, email, name, phone, address, city, s
     updatedAt: serverTimestamp()
   }
   return updateDoc(docRef, data)
-    .then(() => setstoreData({
+    .then(() => setStoreData({
       ...storeData,
       ...data
     }))

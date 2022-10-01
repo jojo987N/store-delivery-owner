@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import SearchBar from './SearchBar'
 
 export default function SettingsComponent({ navigation, bs }) {
-  const { storeData, setstoreData } = useContext(RestaurantContext)
+  const { storeData, setStoreData } = useContext(RestaurantContext)
   const [email, setEmail] = useState(storeData.email)
   const [name, setName] = useState(storeData.name)
   const [phone, setPhone] = useState(storeData.phone)
@@ -84,7 +84,7 @@ export default function SettingsComponent({ navigation, bs }) {
               style={styles.textInput} />
           </View>
           <TouchableOpacity onPress={() => {
-            updateStoreInfos(storeData, email, name, phone, address, city, setstoreData)
+            updateStoreInfos(storeData, email, name, phone, address, city, setStoreData)
           }}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Update</Text>

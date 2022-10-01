@@ -17,10 +17,10 @@ import OrderReadyDetails from '../components/OrderReadyDetails';
 
 export default function RootNavigation() {
     const Stack = createStackNavigator();
-    const [storeData, setstoreData] = useState()
+    const [storeData, setStoreData] = useState()
   return (
     <NavigationContainer>
-      <RestaurantContext.Provider value={{storeData, setstoreData}}> 
+      <RestaurantContext.Provider value={{storeData, setStoreData}}> 
         <CategoriesContextProvider> 
           <FoodsContextProvider> 
         <Stack.Navigator
