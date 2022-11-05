@@ -93,15 +93,15 @@ const addProducts = () => {
       })
     }))
 }
-export const addProduct = (name, description, price) => {
-  return addDoc(productsCol, {
-    restaurantID: auth.currentUser?.uid,
-    name,
-    description,
-    price,
-    createdAt: serverTimestamp()
-  })
-}
+// export const addProduct = (name, description, price) => {
+//   return addDoc(productsCol, {
+//     restaurantID: auth.currentUser?.uid,
+//     name,
+//     description,
+//     price,
+//     createdAt: serverTimestamp()
+//   })
+// }
 export const addCategory = (name, description, image, restaurantId) => {
   return addDoc(categoriesCol, {
     restaurantId,
