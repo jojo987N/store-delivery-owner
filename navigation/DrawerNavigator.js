@@ -102,7 +102,7 @@ export default function DrawerNavigator() {
           title: "Products",
           headerShown: false,
           drawerIcon: ({ focussed, size }) => (
-            <Ionicons name="fast-product" color="black" size={size} />
+            <FontAwesome name="product-hunt" color="black" size={size} />
           ),
         }}
       />
