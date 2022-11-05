@@ -12,7 +12,7 @@ import { RestaurantContext } from '../context/RestaurantContext';
 import OrderDetails from '../screens/OrderDetails';
 import SignUp from '../screens/authScreens/SignUp';
 import { CategoriesContextProvider } from '../context/CategoriesContext';
-import { FoodsContextProvider } from '../context/FoodsContext';
+import { ProductsContextProvider } from '../context/ProductsContext';
 import OrderReadyDetails from '../components/OrderReadyDetails';
 
 export default function RootNavigation() {
@@ -22,7 +22,7 @@ export default function RootNavigation() {
     <NavigationContainer>
       <RestaurantContext.Provider value={{storeData, setStoreData}}> 
         <CategoriesContextProvider> 
-          <FoodsContextProvider> 
+          <ProductsContextProvider> 
         <Stack.Navigator
          screenOptions={{headerShown: false }}>
         <Stack.Screen name="SignIn" component={SignIn}/>
@@ -32,7 +32,7 @@ export default function RootNavigation() {
         <Stack.Screen name="OrderReadyDetails" component={OrderReadyDetails}/>
         <Stack.Screen name="OrderDetails" component={OrderDetails}/>
         </Stack.Navigator>
-        </FoodsContextProvider>
+        </ProductsContextProvider>
         </CategoriesContextProvider>
         </RestaurantContext.Provider>
     </NavigationContainer>

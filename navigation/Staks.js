@@ -3,8 +3,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Categories from "../screens/Categories";
 import UpdateCategory from "../screens/UpdateCategory";
-import Foods from "../screens/Foods";
-import AddFood from "../screens/AddFood";
+import Products from "../screens/Products";
+import AddProduct from "../screens/AddProduct";
 import Orders from "../screens/Orders";
 import OrderDetails from "../screens/OrderDetails";
 
@@ -32,23 +32,23 @@ export function CategoriesNavigator() {
   );
 }
 
-const FoodStack = createStackNavigator();
+const ProductStack = createStackNavigator();
 
-export function FoodNavigator() {
+export function ProductNavigator() {
   return (
-    <FoodStack.Navigator>
-      <FoodStack.Screen
-        name="Foods"
-        component={Foods}
+    <ProductStack.Navigator>
+      <ProductStack.Screen
+        name="Products"
+        component={Products}
         options={{ headerShown: false }}
       />
 
-      <FoodStack.Screen
-        name="AddFood"
-        component={AddFood}
+      <ProductStack.Screen
+        name="AddProduct"
+        component={AddProduct}
         options={{ headerShown: true }}
       />
-    </FoodStack.Navigator>
+    </ProductStack.Navigator>
   );
 }
 

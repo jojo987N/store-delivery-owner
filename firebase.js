@@ -50,15 +50,15 @@ export const getOrders = (setOrders) => {
   })
 }
 export const productsCol = collection(db, 'products')
-export const foodsCol = collection(db, 'foods')
-export const getFoods = (restaurantId) => {
-  const foods = []
-  const q = query(foodsCol, where('restaurantId', '==', restaurantId), orderBy('createdAt', 'desc'))
+export const productsCol = collection(db, 'products')
+export const getProducts = (restaurantId) => {
+  const products = []
+  const q = query(productsCol, where('restaurantId', '==', restaurantId), orderBy('createdAt', 'desc'))
   return getDocs(q).then(snapshot => {
     snapshot.docs.forEach((doc) => {
-      foods.push({ ...doc.data(), id: doc.id })
+      products.push({ ...doc.data(), id: doc.id })
     })
-    return foods
+    return products
   })
 }
 export const categoriesCol = collection(db, 'categories')
@@ -111,8 +111,8 @@ export const addCategory = (name, description, image, restaurantId) => {
     createdAt: serverTimestamp()
   })
 }
-export const addFood = (name, description, url, price, dPrice, size, category, restaurantId) => {
-  return addDoc(foodsCol, {
+export const addProduct = (name, description, url, price, dPrice, size, category, restaurantId) => {
+  return addDoc(productsCol, {
     name,
     description,
     image: url,

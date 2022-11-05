@@ -42,12 +42,12 @@ export default function OrderReadyDetails({ route, navigation }) {
         </View>
       </View>
       <Divider />
-      <ButtonFoodDone />
+      <ButtonProductDone />
     </View>
   )
 }
-export const ButtonFoodDone = () => <TouchableOpacity style={styles.button}>
-  <Text style={styles.buttonText}>{APP_CONSTANT.FOOD_IS_DONE}</Text>
+export const ButtonProductDone = () => <TouchableOpacity style={styles.button}>
+  <Text style={styles.buttonText}>{APP_CONSTANT.PRODUCT_IS_DONE}</Text>
 </TouchableOpacity>
 
 const styles = StyleSheet.create({

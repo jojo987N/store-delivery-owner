@@ -8,20 +8,20 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { addFood, addProduct, getCategories } from "../firebase";
+import { addProduct, addProduct, getCategories } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { CheckBox } from "react-native-elements";
 import AddInput from "../components/AddInput";
 import { AntDesign } from "@expo/vector-icons";
 import Size from "../components/Size";
 import { openImagePickerAsync } from "../utils";
-import { FoodsContext } from "../context/FoodsContext";
+import { ProductsContext } from "../context/ProductsContext";
 import SelectDropdown from "react-native-select-dropdown";
 import { RestaurantContext } from "../context/RestaurantContext";
 
-export default function AddFood() {
+export default function AddProduct() {
   const { storeData } = useContext(RestaurantContext);
-  const { foods, setFoods } = useContext(FoodsContext);
+  const { products, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -134,7 +134,7 @@ export default function AddFood() {
           title="Add"
           onPress={() => {
             if (url)
-              addFood(
+              addProduct(
                 name,
                 description,
                 url,
@@ -145,8 +145,8 @@ export default function AddFood() {
                 storeData.id
               )
                 .then(() =>
-                  setFoods([
-                    ...foods,
+                  setProducts([
+                    ...products,
                     {
                       name,
                       description,
@@ -158,7 +158,7 @@ export default function AddFood() {
                     },
                   ])
                 )
-                .then(() => navigation.navigate("Foods"));
+                .then(() => navigation.navigate("Products"));
           }}
         />
       </View>

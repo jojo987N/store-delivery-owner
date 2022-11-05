@@ -10,8 +10,8 @@ import {
 } from "@expo/vector-icons";
 import Categories from "../screens/Categories";
 import Orders from "../screens/Orders";
-import Foods from "../screens/Foods";
-import { CategoriesNavigator, FoodNavigator, OrdersNavigator } from "./Staks";
+import Products from "../screens/Products";
+import { CategoriesNavigator, ProductNavigator, OrdersNavigator } from "./Staks";
 import Dashboard from "../screens/Dashboard";
 import SignIn from "../screens/authScreens/SignIn";
 import DrawerContent from "../components/DrawerContent";
@@ -96,13 +96,13 @@ export default function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name="FoodsScreen"
-        component={FoodNavigator}
+        name="ProductsScreen"
+        component={ProductNavigator}
         options={{
-          title: "Foods",
+          title: "Products",
           headerShown: false,
           drawerIcon: ({ focussed, size }) => (
-            <Ionicons name="fast-food" color="black" size={size} />
+            <Ionicons name="fast-product" color="black" size={size} />
           ),
         }}
       />

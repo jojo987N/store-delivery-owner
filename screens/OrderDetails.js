@@ -6,7 +6,7 @@ import Menus from "../components/Menus";
 import Divider from "../components/Divider";
 import UserDetails from "../components/UserDetails";
 import ConfirmModal from "../components/ConfirmModal";
-import { ButtonFoodDone } from "../components/OrderReadyDetails";
+import { ButtonProductDone } from "../components/OrderReadyDetails";
 import ButtonReady from "../components/ButtonReady";
 
 export default function OrderDetails({ route }) {

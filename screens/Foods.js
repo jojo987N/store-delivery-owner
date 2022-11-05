@@ -7,31 +7,31 @@ import {
   Image,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { foodsCol, getFoods } from "../firebase";
+import { productsCol, getProducts } from "../firebase";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import MenuNavigation from "../components/MenuNavigation";
 import Loading from "../components/Loading";
-import { FoodsContext } from "../context/FoodsContext";
+import { ProductsContext } from "../context/ProductsContext";
 import { onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { RestaurantContext } from "../context/RestaurantContext";
 
-export default function Foods() {
+export default function Products() {
   const { storeData } = useContext(RestaurantContext);
-  const { foods, setFoods } = useContext(FoodsContext);
+  const { products, setProducts } = useContext(ProductsContext);
   const navigation = useNavigation();
 
   useEffect(() => {
-    const unsuscribe = onSnapshot(foodsCol, (snapshot) => {
-      let foods = [];
+    const unsuscribe = onSnapshot(productsCol, (snapshot) => {
+      let products = [];
 
       snapshot.docs
         .filter((doc) => doc.data().restaurantId === storeData.id)
         .forEach((doc) => {
-          foods.push({ ...doc.data(), id: doc.id });
+          products.push({ ...doc.data(), id: doc.id });
         });
 
-      setFoods(foods);
+      setProducts(products);
     });
   }, []);
   return (
@@ -39,12 +39,12 @@ export default function Foods() {
       <View>
         <View style={styles.header}>
           <MenuNavigation navigation={navigation} />
-          <Text style={styles.title}>Foods</Text>
+          <Text style={styles.title}>Products</Text>
         </View>
         <ScrollView>
-          {foods ? (
+          {products ? (
             <View>
-              {foods.map((food, index) => {
+              {products.map((product, index) => {
                 return (
                   <View
                     key={index}
@@ -58,7 +58,7 @@ export default function Foods() {
                     <View style={{ flex: 1 }}>
                       <Image
                         style={styles.image}
-                        source={{ uri: food.image }}
+                        source={{ uri: product.image }}
                       />
                     </View>
                     <View style={{ flex: 2 }}>
@@ -67,7 +67,7 @@ export default function Foods() {
                           fontSize: 20,
                         }}
                       >
-                        {food.name}
+                        {product.name}
                       </Text>
                     </View>
                   </View>
@@ -86,7 +86,7 @@ export default function Foods() {
           right: 0,
           margin: 30,
         }}
-        onPress={() => navigation.navigate("AddFood")}
+        onPress={() => navigation.navigate("AddProduct")}
       >
         <AntDesign name="pluscircle" size={44} color="blue" />
       </TouchableOpacity>
