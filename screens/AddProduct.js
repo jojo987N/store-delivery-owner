@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
-import { addProduct, addProduct, getCategories } from "../firebase";
+import { addProduct, getCategories } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
 import { CheckBox } from "react-native-elements";
 import AddInput from "../components/AddInput";
