@@ -49,7 +49,7 @@ export const getOrders = (setOrders) => {
     setOrders(orders)
   })
 }
-export const productsCol = collection(db, 'products')
+// export const productsCol = collection(db, 'products')
 export const productsCol = collection(db, 'products')
 export const getProducts = (restaurantId) => {
   const products = []
