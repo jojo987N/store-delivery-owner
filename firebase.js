@@ -35,7 +35,6 @@ export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp)
 export const db = getFirestore()
 export const storesCol = collection(db, 'stores')
-export const storesCol = collection(db, 'stores')
 export const ordersCol = collection(db, 'orders')
 export const categoriesStoresCol = collection(db, 'categoriesStores')
 export const getOrders = (setOrders) => {
