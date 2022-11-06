@@ -34,10 +34,10 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp)
 export const db = getFirestore()
-export const restaurantsCol = collection(db, 'restaurants')
+export const storesCol = collection(db, 'stores')
 export const storesCol = collection(db, 'stores')
 export const ordersCol = collection(db, 'orders')
-export const categoriesRestaurantsCol = collection(db, 'categoriesRestaurants')
+export const categoriesStoresCol = collection(db, 'categoriesStores')
 export const getOrders = (setOrders) => {
   const orders = []
   const unsuscribe = onSnapshot(ordersCol, (snapshot) => {
@@ -51,9 +51,9 @@ export const getOrders = (setOrders) => {
 }
 // export const productsCol = collection(db, 'products')
 export const productsCol = collection(db, 'products')
-export const getProducts = (restaurantId) => {
+export const getProducts = (storeId) => {
   const products = []
-  const q = query(productsCol, where('restaurantId', '==', restaurantId), orderBy('createdAt', 'desc'))
+  const q = query(productsCol, where('storeId', '==', storeId), orderBy('createdAt', 'desc'))
   return getDocs(q).then(snapshot => {
     snapshot.docs.forEach((doc) => {
       products.push({ ...doc.data(), id: doc.id })
@@ -62,7 +62,7 @@ export const getProducts = (restaurantId) => {
   })
 }
 export const categoriesCol = collection(db, 'categories')
-export const getCategories = (restaurantId) => {
+export const getCategories = (storeId) => {
   const categories = []
   return getDocs(categoriesCol).then(snapshot => {
     snapshot.docs.forEach((doc) => {
@@ -71,22 +71,22 @@ export const getCategories = (restaurantId) => {
     return categories
   })
 }
-export const getCategoriesRestaurants = () => {
-  const categoriesRestaurants = []
-  return getDocs(categoriesRestaurantsCol).then(snapshot => {
+export const getCategoriesStores = () => {
+  const categoriesStores = []
+  return getDocs(categoriesStoresCol).then(snapshot => {
     snapshot.docs.forEach((doc) => {
-      categoriesRestaurants.push({ ...doc.data(), id: doc.id })
+      categoriesStores.push({ ...doc.data(), id: doc.id })
     })
-    return categoriesRestaurants
+    return categoriesStores
   })
 }
 const addProducts = () => {
-  getDocs(restaurantsCol)
+  getDocs(storesCol)
     .then(snapshot => snapshot.docs.forEach((doc) => {
       doc.data().dishes.forEach((dishe) => {
         if ('name' in dishe)
           addDoc(productsCol, {
-            restaurantID: doc.id,
+            storeID: doc.id,
             ...dishe,
             createdAt: serverTimestamp()
           }).then(() => console.log("ADDED"))
@@ -95,23 +95,23 @@ const addProducts = () => {
 }
 // export const addProduct = (name, description, price) => {
 //   return addDoc(productsCol, {
-//     restaurantID: auth.currentUser?.uid,
+//     storeID: auth.currentUser?.uid,
 //     name,
 //     description,
 //     price,
 //     createdAt: serverTimestamp()
 //   })
 // }
-export const addCategory = (name, description, image, restaurantId) => {
+export const addCategory = (name, description, image, storeId) => {
   return addDoc(categoriesCol, {
-    restaurantId,
+    storeId,
     name,
     description,
     image,
     createdAt: serverTimestamp()
   })
 }
-export const addProduct = (name, description, url, price, dPrice, size, category, restaurantId) => {
+export const addProduct = (name, description, url, price, dPrice, size, category, storeId) => {
   return addDoc(productsCol, {
     name,
     description,
@@ -119,25 +119,25 @@ export const addProduct = (name, description, url, price, dPrice, size, category
     price,
     size,
     category,
-    restaurantId,
+    storeId,
     createdAt: serverTimestamp()
   })
 }
-export const addCategoryRestaurant = (categoryId, restaurantId) => {
-  return addDoc(categoriesRestaurantsCol, {
+export const addCategoryStore = (categoryId, storeId) => {
+  return addDoc(categoriesStoresCol, {
     categoryId,
-    restaurantId,
+    storeId,
     createdAt: serverTimestamp()
   })
 }
-export const deleteCategoriesRestaurants = async (categoryId, restaurantId) => {
-  const q = query(categoriesRestaurantsCol, where('categoryId', '==', categoryId), where('restaurantId', '==', restaurantId))
+export const deleteCategoriesStores = async (categoryId, storeId) => {
+  const q = query(categoriesStoresCol, where('categoryId', '==', categoryId), where('storeId', '==', storeId))
   const snapshot = await getDocs(q);
-  const docRef = doc(db, 'categoriesRestaurants', snapshot.docs[0].id)
+  const docRef = doc(db, 'categoriesStores', snapshot.docs[0].id)
   return deleteDoc(docRef)
 }
-// export const getRestaurantId = (uid) => {
-//   const q = query(restaurantsCol, where('ownerId', '==', uid))
+// export const getStoreId = (uid) => {
+//   const q = query(storesCol, where('ownerId', '==', uid))
 //   return getDocs(q)
 // }
 
@@ -193,8 +193,8 @@ export const updateProduct = (product_id, image) => {
   })
     .then(() => console.log('good'))
 }
-// export const updateRestaurant = (restaurant_id, image) => {
-//   const docRef = doc(db, 'restaurants', restaurant_id)
+// export const updateStore = (store_id, image) => {
+//   const docRef = doc(db, 'stores', store_id)
 //   updateDoc(docRef, {
 //     image: image,
 //   })
@@ -207,8 +207,8 @@ export const updateStore = (store_id, image) => {
   })
     .then(() => console.log('updated'))
 }
-// export const updateRestaurantInfos = (storeData, email, name, phone, address, city, setStoreData) => {
-//   const docRef = doc(db, 'restaurants', storeData.id)
+// export const updateStoreInfos = (storeData, email, name, phone, address, city, setStoreData) => {
+//   const docRef = doc(db, 'stores', storeData.id)
 //   const data = {
 //     email,
 //     name,
@@ -250,8 +250,8 @@ const getOrder = () => {
       console.log(snapshot.docs[0].data())
     })
 }
-// export const addRestaurant = (userCredentials, name, phone, address) => {
-//   return addDoc(restaurantsCol, {
+// export const addStore = (userCredentials, name, phone, address) => {
+//   return addDoc(storesCol, {
 //     ownerId: userCredentials.user.uid,
 //     name: name,
 //     ownerEmail: userCredentials.user.email,

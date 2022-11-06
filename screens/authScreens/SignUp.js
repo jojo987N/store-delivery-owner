@@ -17,7 +17,7 @@ export default function SignUp({ navigation }) {
   async function signUp(){
      try{
        const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-      //  addRestaurant(userCredentials,name,phone, address)
+      //  addStore(userCredentials,name,phone, address)
       addStore(userCredentials,name,phone, address)
        .then(()=> navigation.navigate("SignIn"))
        console.log("STORE ACCOUNT CREATED")
@@ -57,7 +57,7 @@ export default function SignUp({ navigation }) {
             marginLeft: 6,
           }} />
           <TextInput
-            placeholder='restaurant Name'
+            placeholder='store Name'
             value={name}
             onChangeText={(text) => setName(text)}
             style={styles.textInput}

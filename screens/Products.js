@@ -14,10 +14,10 @@ import MenuNavigation from "../components/MenuNavigation";
 import Loading from "../components/Loading";
 import { ProductsContext } from "../context/ProductsContext";
 import { onSnapshot, orderBy, query, where } from "firebase/firestore";
-import { RestaurantContext } from "../context/RestaurantContext";
+import { StoreContext } from "../context/StoreContext";
 
 export default function Products() {
-  const { storeData } = useContext(RestaurantContext);
+  const { storeData } = useContext(StoreContext);
   const { products, setProducts } = useContext(ProductsContext);
   const navigation = useNavigation();
 
@@ -26,7 +26,7 @@ export default function Products() {
       let products = [];
 
       snapshot.docs
-        .filter((doc) => doc.data().restaurantId === storeData.id)
+        .filter((doc) => doc.data().storeId === storeData.id)
         .forEach((doc) => {
           products.push({ ...doc.data(), id: doc.id });
         });

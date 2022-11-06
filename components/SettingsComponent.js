@@ -1,15 +1,15 @@
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { Entypo, FontAwesome5, MaterialIcons } from '@expo/vector-icons'
-import { auth, getDriverInfos, updateRestaurantInfos, updateStoreInfos } from '../firebase'
+import { auth, getDriverInfos, updateStoreInfos, updateStoreInfos } from '../firebase'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { RestaurantContext } from '../context/RestaurantContext'
+import { StoreContext } from '../context/StoreContext'
 import { ScrollView } from 'react-native-gesture-handler'
 import SearchBar from './SearchBar'
 
 export default function SettingsComponent({ navigation, bs }) {
-  const { storeData, setStoreData } = useContext(RestaurantContext)
+  const { storeData, setStoreData } = useContext(StoreContext)
   const [email, setEmail] = useState(storeData.email)
   const [name, setName] = useState(storeData.name)
   const [phone, setPhone] = useState(storeData.phone)

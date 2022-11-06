@@ -17,7 +17,7 @@ export default function Upload({route}) {
     const response = await fetch(uri)
     const blob = await response.blob()
     const storage = getStorage();
-    const storageRef = ref(storage, 'restaurant/bonmange');
+    const storageRef = ref(storage, 'store/bonmange');
 
     getDownloadURL(storageRef) 
     .then(url=> updateProduct(product_id,url))

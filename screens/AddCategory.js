@@ -3,12 +3,12 @@ import React, {useContext, useEffect, useRef, useState} from 'react'
 import { addCategory, addProduct } from '../firebase'
 import { useNavigation } from '@react-navigation/native';
 import PickImage from '../components/PickImage';
-import { RestaurantContext } from '../context/RestaurantContext';
+import { StoreContext } from '../context/StoreContext';
 import BottomSheet from 'reanimated-bottom-sheet'
 import { CategoriesContext } from '../context/CategoriesContext';
 
 export default function AddCategory() {
-    const {storeData} = useContext(RestaurantContext)
+    const {storeData} = useContext(StoreContext)
     const {categories, setCategories} = useContext(CategoriesContext)
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")

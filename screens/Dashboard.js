@@ -17,7 +17,7 @@ export default function Dashboard({ navigation }) {
         <Text style={styles.titleHeader}>Dashboard</Text>
       </View>
       <View style={styles.title_switch}>
-        <Text style={styles.title}>Restaurant {isEnabled ? "Open" : "Close"} Now</Text>
+        <Text style={styles.title}>Store {isEnabled ? "Open" : "Close"} Now</Text>
         <View style={styles.switchContainer}>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}

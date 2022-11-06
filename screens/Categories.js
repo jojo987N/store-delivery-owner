@@ -8,26 +8,26 @@ import {
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import {
-  addCategoryRestaurant,
+  addCategoryStore,
   categoriesCol,
-  categoriesRestaurantsCol,
-  deleteCategoriesRestaurants,
+  categoriesStoresCol,
+  deleteCategoriesStores,
   getCategories,
-  getCategoriesRestaurants,
+  getCategoriesStores,
 } from "../firebase";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import MenuNavigation from "../components/MenuNavigation";
 import Loading from "../components/Loading";
 import { CategoriesContext } from "../context/CategoriesContext";
-import { RestaurantContext } from "../context/RestaurantContext";
+import { StoreContext } from "../context/StoreContext";
 import { onSnapshot } from "firebase/firestore";
 
 export default function Categories({ navigation }) {
   const { categories, setCategories } = useContext(CategoriesContext);
-  const { storeData } = useContext(RestaurantContext);
+  const { storeData } = useContext(StoreContext);
   const [addButtons, setAddButtons] = useState();
-  const [categoriesRestaurants, setCategoriesRestaurants] = useState();
+  const [categoriesStores, setCategoriesStores] = useState();
   useEffect(() => {
     onSnapshot(categoriesCol, (snapshot) => {
       let _categories = snapshot.docs
@@ -42,12 +42,12 @@ export default function Categories({ navigation }) {
       );
     });
 
-    const unsuscribe = onSnapshot(categoriesRestaurantsCol, (snapshot) => {
+    const unsuscribe = onSnapshot(categoriesStoresCol, (snapshot) => {
       const c = [];
       snapshot.docs.forEach((doc) => {
         c.push({ ...doc.data(), id: doc.id });
       });
-      setCategoriesRestaurants(c);
+      setCategoriesStores(c);
     });
   }, []);
   return (
@@ -58,7 +58,7 @@ export default function Categories({ navigation }) {
           <Text style={styles.title}>Categories</Text>
         </View>
         <ScrollView>
-          {categories && addButtons && categoriesRestaurants ? (
+          {categories && addButtons && categoriesStores ? (
             <View>
               {categories.map((category, index) => {
                 return (
@@ -88,19 +88,19 @@ export default function Categories({ navigation }) {
                     <TouchableOpacity
                       onPress={() => {
                         if (
-                          !categoriesRestaurants.some(
-                            (categorieRestaurant) =>
-                              categorieRestaurant.categoryId === category.id &&
-                              categorieRestaurant.restaurantId ===
+                          !categoriesStores.some(
+                            (categorieStore) =>
+                              categorieStore.categoryId === category.id &&
+                              categorieStore.storeId ===
                                 storeData.id
                           )
                         ) {
-                          addCategoryRestaurant(
+                          addCategoryStore(
                             category.id,
                             storeData.id
                           ).then((res) => {});
                         } else {
-                          deleteCategoriesRestaurants(
+                          deleteCategoriesStores(
                             category.id,
                             storeData.id
                           ).then(() => {});
@@ -108,10 +108,10 @@ export default function Categories({ navigation }) {
                       }}
                       style={{
                         ...styles.addButton,
-                        backgroundColor: categoriesRestaurants.some(
-                          (categorieRestaurant) =>
-                            categorieRestaurant.categoryId === category.id &&
-                            categorieRestaurant.restaurantId ===
+                        backgroundColor: categoriesStores.some(
+                          (categorieStore) =>
+                            categorieStore.categoryId === category.id &&
+                            categorieStore.storeId ===
                               storeData.id
                         )
                           ? "red"
@@ -119,10 +119,10 @@ export default function Categories({ navigation }) {
                       }}
                     >
                       <Text style={{ color: "white", fontWeight: "bold" }}>
-                        {categoriesRestaurants.some(
-                          (categorieRestaurant) =>
-                            categorieRestaurant.categoryId === category.id &&
-                            categorieRestaurant.restaurantId ===
+                        {categoriesStores.some(
+                          (categorieStore) =>
+                            categorieStore.categoryId === category.id &&
+                            categorieStore.storeId ===
                               storeData.id
                         )
                           ? "Remove"

@@ -17,10 +17,10 @@ import Size from "../components/Size";
 import { openImagePickerAsync } from "../utils";
 import { ProductsContext } from "../context/ProductsContext";
 import SelectDropdown from "react-native-select-dropdown";
-import { RestaurantContext } from "../context/RestaurantContext";
+import { StoreContext } from "../context/StoreContext";
 
 export default function AddProduct() {
-  const { storeData } = useContext(RestaurantContext);
+  const { storeData } = useContext(StoreContext);
   const { products, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState();
   const [name, setName] = useState("");
@@ -154,7 +154,7 @@ export default function AddProduct() {
                       price,
                       size,
                       category,
-                      restaurantId: storeData.id,
+                      storeId: storeData.id,
                     },
                   ])
                 )

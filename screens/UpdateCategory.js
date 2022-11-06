@@ -13,7 +13,7 @@ export default function UpdateCategory() {
             marginTop: 0,
         }}>
            <TextInput
-           placeholder="Restaurant Name"
+           placeholder="Store Name"
            style={{
                width: "90%",
                

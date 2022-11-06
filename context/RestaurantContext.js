@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const RestaurantContext = createContext({})
+export const StoreContext = createContext({})

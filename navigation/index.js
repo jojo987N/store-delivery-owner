@@ -8,7 +8,7 @@ import UpdateCategory from '../screens/UpdateCategory';
 import { CategoriesNavigator, OrdersNavigator } from './Staks';
 import SignIn from '../screens/authScreens/SignIn';
 import Upload from '../screens/Upload';
-import { RestaurantContext } from '../context/RestaurantContext';
+import { StoreContext } from '../context/StoreContext';
 import OrderDetails from '../screens/OrderDetails';
 import SignUp from '../screens/authScreens/SignUp';
 import { CategoriesContextProvider } from '../context/CategoriesContext';
@@ -20,7 +20,7 @@ export default function RootNavigation() {
     const [storeData, setStoreData] = useState()
   return (
     <NavigationContainer>
-      <RestaurantContext.Provider value={{storeData, setStoreData}}> 
+      <StoreContext.Provider value={{storeData, setStoreData}}> 
         <CategoriesContextProvider> 
           <ProductsContextProvider> 
         <Stack.Navigator
@@ -34,7 +34,7 @@ export default function RootNavigation() {
         </Stack.Navigator>
         </ProductsContextProvider>
         </CategoriesContextProvider>
-        </RestaurantContext.Provider>
+        </StoreContext.Provider>
     </NavigationContainer>
   )
 }

@@ -7,13 +7,13 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker"
 import * as Permissions from 'expo-permissions'
 import { Camera } from "expo-camera"
-import { updateProduct, updateRestaurant, updateStore } from "../firebase"
+import { updateProduct, updateStore, updateStore } from "../firebase"
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import SettingsComponent from "../components/SettingsComponent";
-import { RestaurantContext } from "../context/RestaurantContext";
+import { StoreContext } from "../context/StoreContext";
 
 export default function Upload({ route, navigation }) {
-  const { storeData, setStoreData } = useContext(RestaurantContext)
+  const { storeData, setStoreData } = useContext(StoreContext)
   const uploadImage = async (uri) => {
     const response = await fetch(uri)
     const blob = await response.blob()

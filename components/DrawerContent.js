@@ -12,10 +12,10 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
-import { RestaurantContext } from '../context/RestaurantContext'
+import { StoreContext } from '../context/StoreContext'
 
 export default function DrawerContent(props) {
-    const { storeData } = useContext(RestaurantContext)
+    const { storeData } = useContext(StoreContext)
     const [isSignedIn, setIsSignedIn] = useState(true)
     const navigation = useNavigation()
     const signOutUser = () => {

@@ -1,19 +1,19 @@
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import React, {useState, useEffect, useContext} from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
-import { auth, getRestaurantId, getStoreId, userInfos} from '../../firebase'
+import { auth, getStoreId, getStoreId, userInfos} from '../../firebase'
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut} from 'firebase/auth'
 import { LinearGradient } from 'expo-linear-gradient'
 import * as Animatable from "react-native-animatable"
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { RestaurantContext } from '../../context/RestaurantContext'
+import { StoreContext } from '../../context/StoreContext'
 import Loading from '../../components/Loading'
 import { APP_CONSTANT } from '../../global'
 
 export default function SignIn({navigation, route}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const {storeData,setStoreData} = useContext(RestaurantContext)
+  const {storeData,setStoreData} = useContext(StoreContext)
   const [loading, setLoading] = useState(false)
   if(route.params && route.params.param === "SignOut")
   signOut(auth)
@@ -31,7 +31,7 @@ export default function SignIn({navigation, route}) {
 useEffect(()=>{
   const checkAuth = onAuthStateChanged(auth, (user)=>{
       if(user){
-      //  getRestaurantId(user.uid)
+      //  getStoreId(user.uid)
       getStoreId(user.uid)
        .then(snapshot => {
          if(snapshot.docs[0]){
