@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView, StatusBar, Image, TextInput, StyleSheet, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { Entypo, FontAwesome5, MaterialIcons } from '@expo/vector-icons'
-import { auth, getDriverInfos, updateStoreInfos, updateStoreInfos } from '../firebase'
+import { auth, getDriverInfos, updateStoreInfos } from '../firebase'
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { StoreContext } from '../context/StoreContext'
