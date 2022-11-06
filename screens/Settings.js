@@ -7,7 +7,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker"
 import * as Permissions from 'expo-permissions'
 import { Camera } from "expo-camera"
-import { updateProduct, updateStore, updateStore } from "../firebase"
+import { updateProduct, updateStore } from "../firebase"
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage'
 import SettingsComponent from "../components/SettingsComponent";
 import { StoreContext } from "../context/StoreContext";
